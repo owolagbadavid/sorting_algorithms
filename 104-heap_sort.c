@@ -1,56 +1,59 @@
 #include "sort.h"
-#include <stdio.h>
-
 /**
- * heapify - heapifies an array
- * @array: array to heapify
- * @size: size of the array
- * @i: index to heapify from
- */
-void heapify(int *array, size_t size, size_t i)
+ * heap_sort - sorts an array using heap sort algorithm
+ * @array: the arr
+ * @size: size of arr
+*/
+void heap_sort(int *array, size_t size)
 {
-	size_t largest = i, left = 2 * i + 1, right = 2 * i + 2;
+	int i;
+	int tmp;
 
-	if (left < size && array[left] > array[largest])
-		largest = left;
+	if (size < 2)
+		return;
 
-	if (right < size && array[right] > array[largest])
-		largest = right;
+	for (i = size / 2 - 1; i >= 0; i--)
+		heapify(array, size, (size_t)i, size);
 
-	if (largest != i)
+	for (i = size - 1; i >= 0; i--)
 	{
-		int temp = array[i];
-
-		array[i] = array[largest];
-		array[largest] = temp;
-		print_array(array, size);
-		heapify(array, size, largest);
+		tmp = array[i];
+		array[i] = array[0];
+		array[0] = tmp;
+		if (i != 0)
+			print_array(array, size);
+		heapify(array, (size_t)i, 0, size);
 	}
 }
 
 /**
- * heap_sort - sorts an array of integers in ascending order using the Heap
- * sort algorithm
- * @array: array to sort
- * @size: size of the array
+ * heapify - turns an array in a heap tree
+ * @arr: array to turn into heap
+ * @s: size of the subtree
+ * @root: index of the subtree in the heap
+ * @n: size of the whole array
  */
-void heap_sort(int *array, size_t size)
+void heapify(int *arr, size_t s, size_t root, size_t n)
 {
-	int i;
+	size_t max, left, right;
+	int tmp;
 
-	if (!array || size < 2)
-		return;
+	max = root;
+	left = (root * 2) + 1;
+	right = (root * 2) + 2;
 
-	for (i = size / 2 - 1; i >= 0; i--)
-		heapify(array, size, i);
+	if (left < s && arr[left] > arr[max])
+		max = left;
 
-	for (i = size - 1; i > 0; i--)
+	if (right < s && arr[right] > arr[max])
+		max = right;
+
+	if (max != root)
 	{
-		int temp = array[0];
-
-		array[0] = array[i];
-		array[i] = temp;
-		print_array(array, size);
-		heapify(array, i, 0);
+		tmp = arr[root];
+		arr[root] = arr[max];
+		arr[max] = tmp;
+		print_array(arr, n);
+		heapify(arr, s, max, n);
 	}
 }
