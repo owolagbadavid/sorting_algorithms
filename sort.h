@@ -35,6 +35,7 @@ void mergeSubarray(int *temp, int *array, size_t left,
 		size_t middle, size_t right);
 void mergeSortRecursion(int *temp, int *array, size_t left, size_t right);
 void heap_sort(int *array, size_t size);
+void heapify(int *array, size_t size, size_t i);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
