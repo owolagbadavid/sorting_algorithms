@@ -38,7 +38,10 @@ void heap_sort(int *array, size_t size);
 void heapify(int *arr, size_t s, size_t root, size_t n);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
-void bitonic_merge(int *array, int low, size_t count, int dir);
+void bitonic_merge(int *array, int l, int r, int dir);
+void bitonic_recursion(int *array, int l, int r, int dir, size_t size);
 void quick_sort_hoare(int *array, size_t size);
+int partition(int *array, int left, int right, size_t size);
+void quick_recursion(int *array, int left, int right, size_t size);
 
 #endif
