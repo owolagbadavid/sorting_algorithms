@@ -13,7 +13,7 @@ void bitonic_merge(int *array, int low, size_t count, int dir)
 	if (count > 1)
 	{
 		int k = count / 2;
-		int i, j;
+		int i;
 
 		printf("Merging [%lu/%lu] (%s):\n", count, count, dir ? "UP" : "DOWN");
 		print_array(array + low, count);
@@ -44,7 +44,7 @@ void bitonic_merge(int *array, int low, size_t count, int dir)
  */
 void bitonic_sort(int *array, size_t size)
 {
-	int i, j;
+	size_t i, j;
 
 	if (size < 2)
 		return;
